@@ -60,9 +60,9 @@
                         </a>
                         <ul class="dropdown-menu drop-overflow">
                             <!-- MythAPI - Use method Hash -->
-                            {{ #members }}
-                                <li><a member="{{ id }}" class="select-member" href="{{ vars.path.top }}#/{{ links.scouts }}/{{ id }}">{{ nome }}</a></li>
-                            {{ /members }}
+                            {% for member in members %}
+                                <li><a member="{{ member.id }}" class="select-member" href="{{ vars.path.top }}#/{{ links.scouts }}/{{ member.id }}">{{ member.nome }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
@@ -84,21 +84,21 @@
 
         <div id="badge-board" class="panel panel-default hide-board">
 
-            {{ #badges }}
+            {% for badge in badges %}
             <p>
-                <b>Nome:</b> {{ nome }} <img src="{{ vars.path.top }}{{ vars.assets.badges }}/{{ id }}.png" alt="{{ id}}" />
+                <b>Nome:</b> {{ badge.nome }} <img src="{{ vars.path.top }}{{ vars.assets.badges }}/{{ badge.id }}.png" alt="{{ badge.id}}" />
             </p>
             <p>
-                <b>Título:</b> {{ titulo }}
+                <b>Título:</b> {{ badge.titulo }}
             </p>
             <p>
-                <b>Tipo:</b> {{ tipo }}
+                <b>Tipo:</b> {{ badge.tipo }}
             </p>
             <p>
-                <b>Descrição:</b> {{ descricao }}
+                <b>Descrição:</b> {{ badge.descricao }}
             </p>
             <br>
-            {{ /badges }}
+            {% endfor %}
 
         </div>
     </div>

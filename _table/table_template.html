@@ -1,6 +1,6 @@
 
-{{ #members }}
-<table class="tg board board-member-{{ id }}" style="margin-bottom: 10px; fixed; width: 100%">
+{% for member in members %}
+<table class="tg board board-member-{{ member.id }}" style="margin-bottom: 10px; fixed; width: 100%">
     <colgroup>
         <col style="width: 50px">
         <col style="width: 150px">
@@ -9,25 +9,25 @@
         <tr>
             <!-- CREST ICON -->
             <th class="crest">
-                <img alt="crest" class="crestpic" title="" src="{{ vars.path.top }}{{ vars.assets.crests }}{{ crest }}.png">
+                <img alt="crest" class="crestpic" title="" src="{{ vars.path.top }}{{ vars.assets.crests }}{{ member.crest }}.png">
             </th>
             <!-- NAME -->
-            <th align="left" class="name" colspan="3"> {{ nome }} </th>
+            <th align="left" class="name" colspan="3"> {{ member.nome }} </th>
             <!-- Espacinho -->
             <!-- TIER -->
             <th align="left" class="tiername">
-                <b>{{ terms.tier }}</b>: {{ tier }}
+                <b>{{ terms.tier }}</b>: {{ member.tier }}
             </th>
             <th align="right" class="tiericon">
-                    <img alt="tier" class="tier" title="{{ tier }}" src="{{ vars.path.top }}{{ vars.assets.tiers }}{{ tier }}.png">
+                    <img alt="tier" class="tier" title="{{ member.tier }}" src="{{ vars.path.top }}{{ vars.assets.tiers }}{{ member.tier }}.png">
             </th>
         </tr>
         <tr>
             <!-- PROFILE PIC -->
             <td align="center" class="profilepic" colspan="2" rowspan="5">
-                <a target="_blank" href="https://www.facebook.com/{{ faceId }}">
-                    <!-- <img alt="profile" class="profile" src="http://graph.facebook.com/{{ faceId }}/picture?width=151&height=151"> -->
-                    <img width="151" height="151" alt="profile" class="profile" src="{{ vars.path.top }}{{ vars.assets.profile }}{{ faceId }}.jpg">
+                <a target="_blank" href="https://www.facebook.com/{{ member.faceId }}">
+                    <!-- <img alt="profile" class="profile" src="http://graph.facebook.com/{{ member.faceId }}/picture?width=151&height=151"> -->
+                    <img width="151" height="151" alt="profile" class="profile" src="{{ vars.path.top }}{{ vars.assets.profile }}{{ member.faceId }}.jpg">
                 </a>
             </td>
             <tr>
@@ -38,20 +38,20 @@
             </td>
             <td class="tg-031e"></td>
             <td class="since" align="right" colspan="3"> {{ terms.joindate }}:
-                <strong class="mythano"> {{ joindate }} </strong>
+                <strong class="mythano"> {{ member.joindate }} </strong>
             </td>
         </tr>
         <tr>
             <!-- BADGES -->
-            <td class="badges" id="b-{{ id }}" colspan="4">
-                {{ #badges }}
-                <img class="badgeicon" src="{{ vars.path.top }}{{ vars.assets.badges }}{{ . }}.png" alt="{{ . }}" />
-                {{ /badges }}
+            <td class="badges" id="b-{{ member.id }}" colspan="4">
+                {% for badge in badges %}
+                <img class="badgeicon" src="{{ vars.path.top }}{{ vars.assets.badges }}{{ badge.id }}.png" alt="{{ badge.id }}" />
+                {% endfor %}
             </td>
         </tr>
         <tr>
-            <td colspan="4" align="right" class="badges2"> <i>{{ terms.collection }}</i> <b id="t-{{ id }}"></b> </td>
+            <td colspan="4" align="right" class="badges2"> <i>{{ terms.collection }}</i> <b id="t-{{ member.id }}"></b> </td>
         </tr>
     </tbody>
 </table>
-{{ /members }}
+{% endfor %}
